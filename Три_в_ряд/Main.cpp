@@ -3,11 +3,11 @@
 #include <iostream>
 #include <vector>
 #include "Matrix_Header2.h"
-const int BOARD_SIZE = 8;
 
-int main() { 
-  std::vector<std::vector<int>> board(6, std::vector<int>(10));
-  Generate_Board(board);
-  Show_Board(board);
+int main() {
+    std::srand(std::time(nullptr));
+    std::vector<std::vector<char>> board(8, std::vector<char>(8));
 
+    Generate_Board(board);
+    Show_Board(board);
 }
