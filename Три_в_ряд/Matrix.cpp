@@ -47,9 +47,9 @@ void Generate_Board(std::vector<std::vector<char>>& board) {
   }
 }
 // просто вывод c небольшим дизайном
-void Show_Board(std::vector<std::vector<char>> board) {
-  std::cout << "=== ТРИ В РЯД ===" << '\n';
-  std::cout << "Счет: пока нет" << '\n' << '\n' << "     ";  // потом добавим
+void Show_Board(std::vector<std::vector<char>> board, int score) {
+  std::cout << "\n=== ТРИ В РЯД ===" << '\n';
+  std::cout << "--- Текущий счет: " << score << " ---" << '\n' << '\n' << "     ";
   for (int i = 1; i < 9; i++) {
     std::cout << i << "  ";
   }

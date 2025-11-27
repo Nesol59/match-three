@@ -91,11 +91,10 @@ void generation_of_new_cells(std::vector<std::vector<char>>& board, bool& gen) {
 void Start_Game(std::vector<std::vector<char>>& board, int& total_score) {
     bool running = true;
     while (running) {
-        std::cout << "\n--- Текущий счет: " << total_score << " ---\n";
-        Show_Board(board);
+        Show_Board(board, total_score);
 
         int r1, c1, r2, c2;
-        std::cout << "\nВведите координаты первой клетки (строка столбец) или введите 0 для окончания игры: ";
+        std::cout << "\nВведите координаты первой клетки (строка столбец) или 0 для окончания игры: ";
         if (!(std::cin >> r1) || r1 == 0) {
             break;
         }
@@ -141,7 +140,7 @@ void Start_Game(std::vector<std::vector<char>>& board, int& total_score) {
 
         if (win == 1) {
             total_score += turn_score;
-            std::cout << "Ход выполнен! Вы заработали " << turn_score << "очков.\n";
+            std::cout << "Ход выполнен! Вы заработали " << turn_score << " очков.\n";
         } else {
             board = saved_board;
             std::cout << "Комбинаций нет. Элементы возвращены в исходное состояние.\n";
@@ -149,4 +148,20 @@ void Start_Game(std::vector<std::vector<char>>& board, int& total_score) {
     }
 
     std::cout << "Игра окончена. Ваш итоговый счет: " << total_score << "\n";
+}
+
+void Clear_Board(std::vector<std::vector<char>>& board) {
+    bool gen = true;
+
+    while (true) {
+        win_comb(board);
+        int matches = number_of_winning_cells(board);
+
+        if (matches > 0) {
+            if (gen) gen = false;
+            generation_of_new_cells(board, gen);
+        } else {
+            break;
+        }
+    }
 }

@@ -21,7 +21,7 @@ int main() {
         std::cout << "1 - Начать игру" << std::endl;
         std::cout << "2 - Текущее количество очков" << std::endl;
         std::cout << "3 - Кнопка для вывода котика <3" << std::endl;
-        std::cout << "4 - Выйти из игры" << std::endl;
+        std::cout << "0 - Выйти из игры" << std::endl;
         std::cout << "===============================" << std::endl;
         std::cout << "Ваш выбор:";
         int choice;
@@ -29,19 +29,20 @@ int main() {
         switch (choice) {
             case 1:
                 Generate_Board(board);
+                Clear_Board(board);
                 Start_Game(board, score);
                 break;
             case 2:
-                std::cout << score << std::endl;
+                std::cout << "Сейчас у вас " << score << " очков.\n\n";
                 break;
             case 3:
                 MurMiau();
                 break;
-            case 4:
+            case 0:
                 flag_tmp=0;
                 break;
             default:
-                std::cout << "Неправильный номер" << std::endl;
+                std::cout << "Неверный ввод!" << std::endl;
         }
     }
 }
