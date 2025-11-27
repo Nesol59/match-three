@@ -1,11 +1,8 @@
 ﻿#include <windows.h>
-#include <ctime>
 #include <iostream>
 #include <vector>
 
-#include "Management_Header.h"
-
-std::vector<char> symbols = {'X', 'O', '#'};
+std::vector<char> symbols = {'X', 'O', '#', '$'};
 
 // ставит цвет
 void SetColor(int colorCode) {
@@ -15,8 +12,7 @@ void SetColor(int colorCode) {
 // функция для сброса цвета текста
 void ResetColor() {
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(
-      hConsole, 7);  // делает белый цвет по дефолту, что другое не было цветным
+  SetConsoleTextAttribute(hConsole, 7);  // делает белый цвет по дефолту, что другое не было цветным
 }
 
 // функция для вывода цветных символов
@@ -31,6 +27,9 @@ void PrintColoredSymbol(char symbol) {
     case '#':
       SetColor(10);  // зеленый
       break;
+    case '$':
+      SetColor(9);
+      break;
     default:
       SetColor(7);  // белый для других символов
       break;
@@ -42,7 +41,7 @@ void PrintColoredSymbol(char symbol) {
 void Generate_Board(std::vector<std::vector<char>>& board) {
   for (int i = 0; i < 8; i++) {
     for (int j = 0; j < 8; j++) {
-      int idx = rand() % 3;
+      int idx = rand() % 4;
       board[i][j] = symbols[idx];
     }
   }
