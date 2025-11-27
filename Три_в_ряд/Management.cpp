@@ -20,6 +20,11 @@ void win_comb(std::vector<std::vector<char>>& board) {
                     board[i][j-1]='3';
                     board[i][j-2]='3';
                 }
+                if ( (board[i][j]=='$' || board[i][j]=='4') && (board[i][j-1]=='$' || board[i][j-1]=='4') && (board[i][j-2]=='$' || board[i][j-2]=='4')) {
+                    board[i][j]='4';
+                    board[i][j-1]='4';
+                    board[i][j-2]='4';
+                }
             }
             if (i>1) {
                 if ( (board[i][j]=='X' || board[i][j]=='1') && (board[i-1][j]=='X' || board[i-1][j]=='1') && (board[i-2][j]=='X' || board[i-2][j]=='1')) {
@@ -37,8 +42,24 @@ void win_comb(std::vector<std::vector<char>>& board) {
                     board[i-1][j]='3';
                     board[i-2][j]='3';
                 }
+                if ( (board[i][j]=='$' || board[i][j]=='4') && (board[i-1][j]=='$' || board[i-1][j]=='4') && (board[i-2][j]=='$' || board[i-2][j]=='4')) {
+                    board[i][j]='4';
+                    board[i-1][j]='4';
+                    board[i-2][j]='4';
+                }
             }
         }
     }
 }
 
+int number_of_winning_cells(std::vector<std::vector<char>> board) {
+    int count=0;
+    for (int i = 0 ;i<8;i++) {
+        for (int j = 0;j<8;j++) {
+            if (board[i][j]=='1' || board[i][j]=='2' || board[i][j]=='3' || board[i][j]=='4') {
+                count++;
+            }
+        }
+    }
+    return count;
+}
